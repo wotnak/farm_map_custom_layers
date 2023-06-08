@@ -1,0 +1,31 @@
+entity.custom_map_layer.collection:
+  path: '/farm/settings/map/custom-layers'
+  defaults:
+    _entity_list: 'custom_map_layer'
+    _title: 'Custom map layers'
+  requirements:
+    _permission: 'manage custom map layers'
+
+entity.custom_map_layer.add_form:
+  path: '/farm/settings/map/custom-layers/add'
+  defaults:
+    _entity_form: 'custom_map_layer.add'
+    _title: 'Add a custom map layer'
+  requirements:
+    _permission: 'manage custom map layers'
+
+entity.custom_map_layer.edit_form:
+  path: '/farm/settings/map/custom-layers/{custom_map_layer}'
+  defaults:
+    _entity_form: 'custom_map_layer.edit'
+    _title: 'Edit a custom map layer'
+  requirements:
+    _permission: 'manage custom map layers'
+
+entity.custom_map_layer.delete_form:
+  path: '/farm/settings/map/custom-layers/{custom_map_layer}/delete'
+  defaults:
+    _entity_form: 'custom_map_layer.delete'
+    _title: 'Delete a custom map layer'
+  requirements:
+    _permission: 'manage custom map layers'

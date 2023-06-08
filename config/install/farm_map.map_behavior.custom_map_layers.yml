@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - farm_map_custom_layers
+id: custom_map_layers
+label: Custom map layers
+description: 'Displays custom map layers.'
+library: 'farm_map_custom_layers/custom_map_layers'
+settings: {}

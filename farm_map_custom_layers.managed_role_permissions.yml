@@ -1,0 +1,3 @@
+farm_map_custom_layers:
+  config_permissions:
+    - manage custom map layers

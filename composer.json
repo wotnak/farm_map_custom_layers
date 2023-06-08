@@ -1,0 +1,10 @@
+{
+  "name": "drupal/farm_map_custom_layers",
+  "description": "Adds UI for defining custom farmOS map layers.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/farm_map_custom_layers",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "farmos/farmos": "^2"
+  }
+}

@@ -1,0 +1,5 @@
+farm_map_custom_layers.custom_map_layers:
+  title: 'Custom layers'
+  route_name: entity.custom_map_layer.collection
+  parent_id: farm_map.settings
+  weight: 1

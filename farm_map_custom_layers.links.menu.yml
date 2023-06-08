@@ -1,0 +1,5 @@
+entity.custom_map_layer.overview:
+  title: Custom map layers
+  parent: system.admin_structure
+  description: 'List of custom map layers.'
+  route_name: entity.custom_map_layer.collection

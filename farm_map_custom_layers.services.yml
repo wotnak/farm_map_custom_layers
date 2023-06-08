@@ -1,0 +1,6 @@
+services:
+  farm_map_custom_layers.event_subscriber:
+    class: Drupal\farm_map_custom_layers\EventSubscriber\MapRenderSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

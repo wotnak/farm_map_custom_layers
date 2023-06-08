@@ -1,0 +1,5 @@
+entity.custom_map_layer.add_form:
+  route_name: 'entity.custom_map_layer.add_form'
+  title: 'Add custom map layer'
+  appears_on:
+    - entity.custom_map_layer.collection

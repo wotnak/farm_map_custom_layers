@@ -1,0 +1,9 @@
+name: farmOS Custom Map Layers
+description: Adds UI for defining custom farmOS map layers.
+type: module
+package: farmOS Contrib
+core_version_requirement: ^9 || ^10
+dependencies:
+  # Omitted project id is an intentional workaround for https://www.drupal.org/project/farm_forest/issues/3190919.
+  - farm_map
+configure: entity.custom_map_layer.collection

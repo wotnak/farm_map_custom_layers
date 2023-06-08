@@ -1,0 +1,6 @@
+custom_map_layers:
+  js:
+    js/custom-map-layers.js: {}
+  dependencies:
+    - core/drupalSettings
+    - farm_map/farm_map

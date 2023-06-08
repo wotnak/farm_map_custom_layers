@@ -1,0 +1,18 @@
+farm_map_custom_layers.custom_map_layer.*:
+  type: config_entity
+  label: Custom layer
+  mapping:
+    id:
+      type: string
+      label: ID
+    title:
+      type: label
+      label: Title
+    uuid:
+      type: string
+    type:
+      type: string
+    url:
+      type: string
+    isBaseLayer:
+      type: boolean
