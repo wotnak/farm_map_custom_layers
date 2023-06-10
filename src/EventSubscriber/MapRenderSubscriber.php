@@ -35,7 +35,7 @@ class MapRenderSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
-      MapRenderEvent::EVENT_NAME => ['onMapRender'],
+      MapRenderEvent::EVENT_NAME => ['onMapRender', 100],
     ];
   }
 
