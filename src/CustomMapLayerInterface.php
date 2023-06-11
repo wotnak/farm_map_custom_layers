@@ -79,4 +79,14 @@ interface CustomMapLayerInterface extends ConfigEntityInterface {
    */
   public function setOpacity(float $opacity): CustomMapLayerInterface;
 
+  /**
+   * Gets the custom map layer options override.
+   */
+  public function getOptionsOverride(): string;
+
+  /**
+   * Sets the custom map layer options override.
+   */
+  public function setOptionsOverride(string $optionsOverride): CustomMapLayerInterface;
+
 }

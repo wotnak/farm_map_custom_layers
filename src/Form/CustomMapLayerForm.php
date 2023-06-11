@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\farm_map_custom_layers\Form;
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Entity\EntityForm;
@@ -111,6 +112,20 @@ class CustomMapLayerForm extends EntityForm {
       '#default_value' => $this->entity->get('url') ?? '',
     ];
 
+    $form['advanced'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Advanced settings'),
+      '#open' => FALSE,
+    ];
+
+    $form['advanced']['options_override'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Layer options override'),
+      '#description' => $this->t('Overrides layer options automatically set based on fields above. This should be a JSON object. For available values refer to <a href="https://github.com/farmOS/farmOS-map">farmOS-map documentation</a>.'),
+      '#description_display' => 'before',
+      '#default_value' => $this->entity->getOptionsOverride() ?? '',
+    ];
+
     return $form;
   }
 
@@ -125,7 +140,7 @@ class CustomMapLayerForm extends EntityForm {
     if ($this->isBaseLayer($form_state)) {
       $groupValue = (string) $this->t('Base layers');
     }
-    $response->addCommand(new InvokeCommand('#edit-group','val',[$groupValue]));
+    $response->addCommand(new InvokeCommand('#edit-group', 'val', [$groupValue]));
     return $response;
   }
 
@@ -144,7 +159,7 @@ class CustomMapLayerForm extends EntityForm {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    if(
+    if (
       !(bool) $form_state->getValue('is_base_layer')
       && $form_state->getValue('group') === (string) $this->t('Base layers')
     ) {
@@ -154,6 +169,23 @@ class CustomMapLayerForm extends EntityForm {
           '"@baseLayersGroup" group can\'t be used for overlay layers. It is reserved for base layers.', ['@baseLayersGroup' => (string) $this->t('Base layers')]
         )
       );
+    }
+    if ($form_state->getValue('options_override')) {
+      try {
+        $json = Json::decode($form_state->getValue('options_override'));
+      }
+      catch (\Exception $e) {
+        $form_state->setErrorByName(
+          'options_override',
+          $this->t('Invalid JSON in layer options override.')
+        );
+      }
+      if (!is_array($json)) {
+        $form_state->setErrorByName(
+          'options_override',
+          $this->t('Layer options override must be a JSON object.')
+        );
+      }
     }
     parent::validateForm($form, $form_state);
   }
@@ -169,6 +201,7 @@ class CustomMapLayerForm extends EntityForm {
     $this->entity->setBaseLayer((bool) $form_state->getValue('is_base_layer'));
     $this->entity->setGroup($form_state->getValue('group'));
     $this->entity->setOpacity(floatval($form_state->getValue('opacity')));
+    $this->entity->setOptionsOverride($form_state->getValue('options_override'));
     $result = parent::save($form, $form_state);
     $message_args = ['%label' => $this->entity->label()];
     $message = $result == SAVED_NEW

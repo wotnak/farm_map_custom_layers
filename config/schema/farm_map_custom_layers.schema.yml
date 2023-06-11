@@ -20,3 +20,5 @@ farm_map_custom_layers.custom_map_layer.*:
       type: string
     opacity:
       type: float
+    optionsOverride:
+      type: string

@@ -50,6 +50,7 @@ use Drupal\farm_map_custom_layers\CustomMapLayerInterface;
  *     "isBaseLayer",
  *     "group",
  *     "opacity",
+ *     "optionsOverride",
  *   }
  * )
  */
@@ -91,6 +92,11 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
   protected float $opacity;
 
   /**
+   * The custom map layer options override.
+   */
+  protected string $optionsOverride;
+
+  /**
    * {@inheritdoc}
    */
   public function getTitle(): string {
@@ -124,7 +130,7 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
    * {@inheritdoc}
    */
   public function getUrl(): string {
-    return $this->url;
+    return $this->url ?? '';
   }
 
   /**
@@ -161,7 +167,7 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
    * {@inheritdoc}
    */
   public function getGroup(): string {
-    return $this->group;
+    return $this->group ?? '';
   }
 
   /**
@@ -172,7 +178,7 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
     return $this;
   }
 
-    /**
+  /**
    * {@inheritdoc}
    */
   public function getOpacity(): float {
@@ -190,6 +196,21 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
       $opacity = 1;
     }
     $this->opacity = $opacity;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOptionsOverride(): string {
+    return $this->optionsOverride ?? '';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOptionsOverride(string $optionsOverride): CustomMapLayerInterface {
+    $this->optionsOverride = $optionsOverride;
     return $this;
   }
 
