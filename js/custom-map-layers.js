@@ -10,8 +10,8 @@
           url: layer.url,
           base: layer.isBaseLayer,
         };
-        if (layer.isBaseLayer) {
-          options.group = 'Base layers';
+        if (layer.group) {
+          options.group = layer.group;
         }
         instance.addLayer(layer.type, options);
       })

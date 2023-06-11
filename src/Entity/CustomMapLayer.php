@@ -48,6 +48,7 @@ use Drupal\farm_map_custom_layers\CustomMapLayerInterface;
  *     "type",
  *     "url",
  *     "isBaseLayer",
+ *      "group",
  *   }
  * )
  */
@@ -77,6 +78,11 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
    * Determines if the custom map layer should be used as base or overlay.
    */
   protected bool $isBaseLayer;
+
+  /**
+   * The custom map layer group.
+   */
+  protected string $group;
 
   /**
    * {@inheritdoc}
@@ -142,6 +148,21 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
    */
   public function setBaseLayer(bool $isBaseLayer = TRUE): CustomMapLayerInterface {
     $this->isBaseLayer = $isBaseLayer;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getGroup(): string {
+    return $this->group;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setGroup(string $group): CustomMapLayerInterface {
+    $this->group = $group;
     return $this;
   }
 

@@ -16,3 +16,5 @@ farm_map_custom_layers.custom_map_layer.*:
       type: string
     isBaseLayer:
       type: boolean
+    group:
+      type: string

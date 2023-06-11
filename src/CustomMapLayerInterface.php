@@ -56,4 +56,14 @@ interface CustomMapLayerInterface extends ConfigEntityInterface {
    */
   public function setBaseLayer(bool $isBaseLayer = TRUE): CustomMapLayerInterface;
 
+  /**
+   * Gets the custom map layer group.
+   */
+  public function getGroup(): string;
+
+  /**
+   * Sets the custom map layer group.
+   */
+  public function setGroup(string $group): CustomMapLayerInterface;
+
 }
