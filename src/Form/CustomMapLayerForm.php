@@ -70,7 +70,12 @@ class CustomMapLayerForm extends EntityForm {
       '#default_value' => $this->isBaseLayer($form_state) ? 'Base layers' : $this->entity->getGroup(),
     ];
 
-    $form['type'] = [
+    $form['source'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Source'),
+    ];
+
+    $form['source']['type'] = [
       '#type' => 'select',
       '#title' => $this->t('Type'),
       '#description' => $this->t('In the future more layer types will be supported. For now only basic XYZ tile layers are.'),
@@ -88,7 +93,7 @@ class CustomMapLayerForm extends EntityForm {
       ],
     ];
 
-    $form['url'] = [
+    $form['source']['url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Url'),
       '#required' => TRUE,
