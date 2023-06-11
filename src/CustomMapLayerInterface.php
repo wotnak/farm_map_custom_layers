@@ -66,4 +66,17 @@ interface CustomMapLayerInterface extends ConfigEntityInterface {
    */
   public function setGroup(string $group): CustomMapLayerInterface;
 
+  /**
+   * Gets the custom map layer opacity.
+   */
+  public function getOpacity(): float;
+
+  /**
+   * Sets the custom map layer opacity.
+   *
+   * @param float $opacity
+   *   The custom map layer opacity. Float between 0 and 1. Smaller values will be capped at 0, larger at 1.
+   */
+  public function setOpacity(float $opacity): CustomMapLayerInterface;
+
 }

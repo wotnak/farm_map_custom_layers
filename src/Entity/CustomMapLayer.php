@@ -48,7 +48,8 @@ use Drupal\farm_map_custom_layers\CustomMapLayerInterface;
  *     "type",
  *     "url",
  *     "isBaseLayer",
- *      "group",
+ *     "group",
+ *     "opacity",
  *   }
  * )
  */
@@ -83,6 +84,11 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
    * The custom map layer group.
    */
   protected string $group;
+
+  /**
+   * The custom map layer opacity.
+   */
+  protected float $opacity;
 
   /**
    * {@inheritdoc}
@@ -163,6 +169,27 @@ class CustomMapLayer extends ConfigEntityBase implements CustomMapLayerInterface
    */
   public function setGroup(string $group): CustomMapLayerInterface {
     $this->group = $group;
+    return $this;
+  }
+
+    /**
+   * {@inheritdoc}
+   */
+  public function getOpacity(): float {
+    return $this->opacity ?? 1;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOpacity(float $opacity): CustomMapLayerInterface {
+    if ($opacity < 0) {
+      $opacity = 0;
+    }
+    if ($opacity > 1) {
+      $opacity = 1;
+    }
+    $this->opacity = $opacity;
     return $this;
   }
 

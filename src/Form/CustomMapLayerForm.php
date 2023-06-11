@@ -70,6 +70,16 @@ class CustomMapLayerForm extends EntityForm {
       '#default_value' => $this->isBaseLayer($form_state) ? 'Base layers' : $this->entity->getGroup(),
     ];
 
+    $form['opacity'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Opacity'),
+      '#description' => $this->t('Opacity of the layer. 0 is fully transparent, 1 is fully opaque.'),
+      '#default_value' => $this->entity->getOpacity() ?? 1,
+      '#min' => 0,
+      '#max' => 1,
+      '#step' => 0.1,
+    ];
+
     $form['source'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Source'),
@@ -158,6 +168,7 @@ class CustomMapLayerForm extends EntityForm {
     $this->entity->setUrl($form_state->getValue('url'));
     $this->entity->setBaseLayer((bool) $form_state->getValue('is_base_layer'));
     $this->entity->setGroup($form_state->getValue('group'));
+    $this->entity->setOpacity(floatval($form_state->getValue('opacity')));
     $result = parent::save($form, $form_state);
     $message_args = ['%label' => $this->entity->label()];
     $message = $result == SAVED_NEW
